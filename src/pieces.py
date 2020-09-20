@@ -8,20 +8,43 @@ from typing import List
 # define type Piece that is a 2D array (list of lists of ints)
 Piece = List[List[int]]
 
-p0 = [[1, 1, 1, 1, 1]]
-p1 = [[1, 1, 1, 1], [0, 0, 0, 1]]
-p2 = [[1, 1, 1, 1], [0, 0, 1, 0]]
-p3 = [[1, 0, 0], [1, 1, 1], [0, 1, 0]]
-p4 = [[1, 1, 1], [0, 0, 1], [0, 0, 1]]
-p5 = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
-p6 = [[1, 1], [0, 1], [1, 1]]
-p7 = [[1, 1, 1], [0, 1, 1]]
-p8 = [[1, 1, 0], [0, 1, 0], [0, 1, 1]]
-p9 = [[1, 1], [1, 1]]
+p0 = [[1, 1],
+      [1, 1]]
+
+p1 = [[1, 1, 1, 1],
+      [0, 0, 0, 1]]
+
+p2 = [[1, 1, 1, 1],
+      [0, 0, 1, 0]]
+
+p3 = [[1, 0, 0],
+      [1, 1, 1],
+      [0, 1, 0]]
+
+p4 = [[1, 1, 1],
+      [0, 0, 1],
+      [0, 0, 1]]
+
+p5 = [[0, 1, 0],
+      [1, 1, 1],
+      [0, 1, 0]]
+
+p6 = [[1, 1],
+      [0, 1],
+      [1, 1]]
+
+p7 = [[1, 1, 1],
+      [0, 1, 1]]
+
+p8 = [[1, 1, 0],
+      [0, 1, 0],
+      [0, 1, 1]]
+
+p9 = [[1, 1, 1, 1, 1]]
 
 pieces = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9]
 
-def display_piece(p):
+def display_2Dlist(p):
     """Prints a piece, or each Piece in a list, to output.
 
     Args:
@@ -32,13 +55,17 @@ def display_piece(p):
         for row in p:
             print(row)
 
-    if isinstance(p, list): # if input is a list
+    def is_piece(p):
+        return type(p[0][0]) == int
+
+
+    if is_piece(p): # if input is a single piece
+        dis(p)              # diaplay the piece
+        print()
+    else:                   # if input is a list of pieces
         for piece in p:     # display every piece in the list
             dis(piece)
             print()
-    else:                   # if input is a single piece
-        dis(p)              # diaplay the piece
-        print()
 
 def display_all(pieces):
     """Displays all pieces (from p0 to p9)
