@@ -1,12 +1,12 @@
 # Giochi di ingegno: cubi magici
-"Giochi di ingegno: cubi magici" (in English "Ingenuity games: magic cubes") is a surprisingly difficult wooden puzzle we used to have at home, that haunted me throughout my childhood with its monstrous state-space. Now that I am a few years older and don't believe in monsters anymore, I am hopeful that with the couple of degrees and the determination I now have I'll be able to defeat it by means of Science.
-
-Therefore, I wrote a Python program to solve the wicked puzzle.
+"Giochi di ingegno: cubi magici" (in English "Ingenuity games: magic cubes") is a surprisingly difficult wooden puzzle we used to have at home, that haunted me throughout my childhood with its monstrous state-space. Now that I am a few years older and don't believe in monsters anymore, I am hopeful that with the couple of degrees and the determination I now have I'll be able to defeat the wicked puzzle by means of Science.
 
 ## The Wicked Puzzle
-The game rules are rather simple: there is a board of size 7x7, and 10 pieces. There is one piece of 4 squares (a 2x2 tetroid) and 9 pieces of 5 squares (pentoids). The total number of 1x1-squares is thus 49 and fits exactly in the 7x7-board. The goal of the puzzle is in fact to fill it by using every piece once. 
+The game rules are rather simple: there is a board of size 7x7, and 10 pieces. There is one piece of 4 squares (a 2x2 tetroid) and 9 pieces of 5 squares (pentoids). The total number of 1x1-squares is thus 49 and fits exactly in the 7x7-board. The goal of the puzzle is in fact to fill it by placing every piece once,
+within the boundaries of the board and without overlapping any other piece.
 
 Following are the board and available pieces:
+
 <img src="images/board_and_pieces.png" width="850" >
 
 ## State-space
