@@ -67,8 +67,9 @@ def display_2Dlist(p):
             dis(piece)
             print()
 
+
 def display_all(pieces):
-    """Displays all pieces (from p0 to p9)
+    """Displays all pieces (from p0 to p9).
 
     Args:
         pieces (List[Piece]): list containing all Pieces
@@ -77,6 +78,7 @@ def display_all(pieces):
         print()             # print new line to separate Pieces visually
         print(f'p{i}')      # log what piece is being printed
         display_piece(p)    # display piece
+
 
 def rotate_clockwise(p: Piece) -> Piece:
     """Returns piece rotated clockwise
@@ -88,6 +90,7 @@ def rotate_clockwise(p: Piece) -> Piece:
         (Piece): piece rotated clockwise
     """
     return [list(l) for l in zip(*p[::-1])]
+
 
 def transpose(p: Piece) -> Piece:
     """

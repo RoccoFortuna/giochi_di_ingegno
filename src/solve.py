@@ -24,23 +24,15 @@ The algorithm's pseudocode follows:
             transpose piece
         else:
             rotate piece clockwise
-- if there are no pieces to be placed, all have been placed: return solution.
-
+- if there are no pieces to be placed, all have been placed:
+    return solution.
+- else no solution was found:
+    return
 """
 
-from pieces import pieces, to_be_transposed, rotate_clockwise, transpose
+from pieces import pieces, rotate_clockwise, transpose
 from board import Game
 
-named_pieces = list(zip([i for i in range(len(pieces))], pieces))
-state = Game()
-positions = [(y, x) for y in range(state.board_size) for x in range(state.board_size)]
-
-# some pieces should not be rotated (p0, p5),
-# some can be rotated, but should not be mirrored (p4, p6)
-# finally, p9 should only be rotated and once.
-# all other pieces should be rotated (4 states), then mirrored (5th state)
-# and rotated three more times
-specific_n_placements = [1, 8, 8, 8, 4, 1, 4, 8, 8, 2]
 
 def recurse(named_pieces, state, positions):
     for piece_idx in range(len(named_pieces)):
@@ -85,12 +77,21 @@ def recurse(named_pieces, state, positions):
         print(state)
         return                  # return to previous recursion state
 
+if __name__ == "__main__":
+    named_pieces = list(zip([i for i in range(len(pieces))], pieces))
+    state = Game()
+    positions = [(y, x) for y in range(state.board_size) for x in range(state.board_size)]
 
-# initialise start state: all pieces, empty board, all possible positions
-named_pieces = list(zip([i for i in range(len(pieces))], pieces))
-# named_pieces = []
-state = Game()
-positions = [(y, x) for y in range(state.board_size) for x in range(state.board_size)]
+    # some pieces should not be rotated (p0, p5),
+    # some can be rotated, but should not be mirrored (p4, p6)
+    # finally, p9 should only be rotated and once.
+    # all other pieces should be rotated (4 states), then mirrored (5th state)
+    # and rotated three more times: 4+4=8 states
+    specific_n_placements = [1, 8, 8, 8, 4, 1, 4, 8, 8, 2]
+    # initialise start state: all pieces, empty board, all possible positions
+    named_pieces = list(zip([i for i in range(len(pieces))], pieces))
+    state = Game()
+    positions = [(y, x) for y in range(state.board_size) for x in range(state.board_size)]
 
-# begin recursion
-recurse(named_pieces, state, positions)
+    # begin recursion
+    recurse(named_pieces, state, positions)

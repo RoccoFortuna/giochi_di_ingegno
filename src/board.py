@@ -25,6 +25,17 @@ class Game():
         # initialize square board
         self.board = [[-1 for _ in range(size)] for _ in range(size)]
 
+
+    def __str__(self):
+        s = '\n '+'--'*self.board_size+'\n'
+        for row in self.board:
+            printed_row = '|'
+            for element in row:
+                printed_row += ' ' + str(element) if int(element) >= 0 else ' ' + '-'
+            s += (str(printed_row) + '|\n')
+        return s + ' ' + '--'*self.board_size
+
+
     def is_solvable(self) -> bool:
         """Check whether self.board does not contain empty islads of a number of blocks
         that is not divisible by 5.
@@ -68,9 +79,6 @@ class Game():
         return True
 
 
-
-
-
     def is_insertable(self, piece: Piece, y: int, x: int) -> bool:
         """Check whether a piece can be inserted at a position (y, x)
 
@@ -105,6 +113,7 @@ class Game():
 
         return True
 
+
     def insert_piece(self, piece: Piece, y: int, x: int, identifier: str):
         """Inserts piece in the game board at position (y, x)
 
@@ -123,6 +132,7 @@ class Game():
                 if element == 1:
                     self.board[y+i][x+j] = identifier
 
+
     def remove_piece(self, piece: Piece, y: int, x: int, identifier: str):
         """[summary]
 
@@ -140,18 +150,10 @@ class Game():
 (y, x) = ({y}, {x}) in board:\n{self}')
                     self.board[y+i][x+j] = -1 # reset board value to empty
 
-    def __str__(self):
-        s = '\n '+'--'*self.board_size+'\n'
-        for row in self.board:
-            printed_row = '|'
-            for element in row:
-                printed_row += ' ' + str(element) if int(element) >= 0 else ' ' + '-'
-            s += (str(printed_row) + '|\n')
-        return s + ' ' + '--'*self.board_size
 
 
 if __name__ == "__main__":
-    from pieces import pieces, display_piece
+    from pieces import pieces, display_2Dlist
 
     # instantiate game
     g = Game()
@@ -161,7 +163,7 @@ if __name__ == "__main__":
 
     # insert a piece
     piece_id = 2
-    display_piece(pieces[piece_id])
+    display_2Dlist(pieces[piece_id])
     g.insert_piece(pieces[piece_id], 2, 3, f'{piece_id}')
 
     # display new board state
