@@ -6,22 +6,25 @@ The algorithm's pseudocode follows:
 - keep track of possible pieces to insert,
 - keep track of the game's board state
 - for each possible piece:
-    - n_placements = 9 if to_be_transposed(piece) else 4
+    - if it is not the first piece (tetroid) check if there are empty
+        islands of n squares, with n not divisible by 5
+    - get number of possible placements n_placements of given piece
     - for placement_state in range(n_placements):
         - for each possible position:
-            - check if piece can be inserted, if so:
+            - if piece can be inserted:
                 - insert piece at position,
                 - recurse with
                     - new possible positions,
                     - new list of pieces,
                     - new board state
-                - then remove piece and try with next position
-            - then try with next piece
-        if placement_state == 3:
+                - once the branch is exhausted remove inserted
+                    piece and try with next position
+            - once all positions have been tried, try with next piece
+        if placement_state is 3:
             transpose piece
         else:
             rotate piece clockwise
-
+- if there are no pieces to be placed, all have been placed: return solution.
 
 """
 
