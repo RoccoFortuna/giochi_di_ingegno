@@ -10,13 +10,13 @@ Following are the board and available pieces:
 <img src="images/board_and_pieces.png" width="850" >
 
 ## State-space
-The state space of this puzzle is simply huge. Each of the 10 pieces can be placed anywhere within the boundaries of the board. Pieces can also be rotated by 90 degrees any number of times and mirrored. Fortunately, the rotation or mirroring of some pieces yields the very same shape, and is therefore not necessary: piece `p0` is unmodified once rotated or mirrored, just like `p5`, due to their horizontal, vertical and diagonal symmetry and have thus only one possible placement. Piece `p9` only needs to be rotated once, as rotating it twice yields the same orientation as not rotating it at all and mirroring it yields itself again, and has thus 2 placements. Pieces `p4` and `p6` only need to be rotated at most thrice, as the mirrored shape can be achieved by rotation as well, which gives them 4 possible placements (non rotated or rotated once, twice or thrice). Finally pieces `p1`, `p2`, `p3`, `p7` and `p8` can be rotated thrice, then mirrored and rotated three more times, yielding 8 different placements.
+The state-space of this puzzle is simply huge. Each of the 10 pieces can be placed anywhere within the boundaries of the board. Pieces can also be rotated by 90 degrees any number of times and mirrored. Fortunately, the rotation or mirroring of some pieces yields the very same shape, and is therefore not necessary: piece `p0` is unmodified once rotated or mirrored, just like `p5`, due to their horizontal, vertical and diagonal symmetry and have thus only one possible placement. Piece `p9` only needs to be rotated once, as rotating it twice yields the same orientation as not rotating it at all and mirroring it yields itself again, and has thus 2 placements. Pieces `p4` and `p6` only need to be rotated at most thrice, as the mirrored shape can be achieved by rotation as well, which gives them 4 possible placements (non rotated or rotated once, twice or thrice). Finally pieces `p1`, `p2`, `p3`, `p7` and `p8` can be rotated thrice, then mirrored and rotated three more times, yielding 8 different placements.
 
 ## Methodology
 The chosen approach involves a backtracking algorithm which recursively inserts pieces in an iterative fashion, tries all possible positions within the board boundaries that do not make the piece overlap with any other piece, rotates and mirrors them, and goes back to previous checkpoints when reaching an unsolvable board state.
 
 ### Pruning
-Given the size of the state space, a pruning mechanism is essential to explore at least a meaningful subset of it.
+Given the size of the state-space, a pruning mechanism is essential to explore at least a meaningful subset of it.
 Define an `empty island` in the board as an empty region of the board such that it is surrounded by pieces or the board's boundaries. By inserting the only tetroid `p0` first, all we are left with are pentoids (pieces formed with 5 1x1 squares: `p1`, ..., `p9`). This means that any empty island can only be filled if it has area `n`, such that `n` is a multiple of 5 (`n%5 == 0`). Every time a new piece is inserted in the board, the board is checked for empty islands, to make sure that no island is of incompatible area rendering the current board unsolvable by inserting the remaining pieces in any way. If the board results unsolvable, the branch is pruned, substantially speeding up the search.
 
 ### The Algorithm
@@ -58,4 +58,4 @@ Despite the state-space being too big and my resources not being able to store t
 
 ## Conclusions
 The program worked to the extent that a solution was found, but many more are probably out there waiting for my recursion to dig deeper.
-Future work could involve running the recursion with higher memory/processing resources, or splitting the search of the gigantic state-space throughout multiple random initializations in a Monte Carlo-like approach, to explore different regions of the state space on separate runs.
+Future work could involve running the recursion with higher memory/processing resources, or splitting the search of the gigantic state-space throughout multiple random initializations in a Monte Carlo-like approach, to explore different regions of the state-space on separate runs.
